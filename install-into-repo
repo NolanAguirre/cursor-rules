@@ -1,0 +1,34 @@
+#!/bin/sh
+set -eu
+
+shout() { echo "$0: $*" >&2; }
+barf() { shout "fatal: $*"; exit 111; }
+safe() { "$@" || barf "cannot $*"; }
+
+# Usage check
+[ $# -eq 1 ] || barf "usage: $0 <target-directory>"
+
+TARGET="$1"
+
+# Ensure target is a git repo
+if [ ! -d "$TARGET/.git" ]; then
+    barf "$TARGET is not a git repository"
+fi
+
+# Create a real temporary directory
+TMPDIR="$(mktemp -d)" || barf "mktemp failed"
+trap 'rm -rf "$TMPDIR"' EXIT INT TERM
+
+# Clone the repo into the temp dir
+safe git clone --depth 1 git@github.com:NolanAguirre/cursor-rules.git "$TMPDIR"
+
+# Copy files into the target repo
+safe cp "$TMPDIR/Makefile.template" "$TARGET/Makefile"
+safe cp "$TMPDIR/sync-cr" "$TARGET/"
+# Commit the changes
+cd "$TARGET"
+echo "$TARGET"
+safe git add Makefile sync-cr
+safe git commit -m "add cursor rule sync automation"
+safe git push
+safe make pull-cr
