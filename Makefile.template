@@ -1,6 +1,5 @@
 .PHONY:  install help update-cr sync-cr
-# This file is meant to be copied into new repos that need to pull this cursor rules repo
-# running it here will reset cursor rules to the remote HEAD
+
 help:
 	@echo "Available commands:"
 	@echo "  install                Install dependencies and update cursor rules"
