@@ -16,3 +16,4 @@
 - Always fully qualify schema and name
 - Order columns as follows: primary key, foriegn keys, table columns and finally created_at, updated_at, deleted, test
 - Use citext instead of text unless asked specifically to 
+-test
