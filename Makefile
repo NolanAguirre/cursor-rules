@@ -2,6 +2,7 @@ help:
 	@echo "Available targets:"
 	@echo "  help           Show this help message"
 	@echo "  install-into   Install cursor rule sync automation into the specified repository"
+	@echo "                 Usage: 'make install-into REPO=<path to git repo>'
 	@echo "  deploy         Sync local cursor rules with the remote repository"
 
 install-into:
