@@ -20,3 +20,4 @@
 # Shell rules
 - Write protable shell scripts
 - Avoid Bash only constructs if possible
+- Do not include extension on shell scripts
