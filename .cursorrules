@@ -5,6 +5,9 @@
 # Javascript rules
 - use arrow functions with const variables instead of the function keywork
 
+# React rules
+- All componets should use a return statement
+- Single html tag functions should return in a simple line, do not split open and close tags onto a new line if the component is only one html tags
 
 # Postgres rules
 - All tables with more than one column need a UUID id
